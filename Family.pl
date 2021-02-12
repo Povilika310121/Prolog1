@@ -78,3 +78,6 @@ father(X):-father(Y,X),write(Y).
 
 brother(X,Y):-parent(Z,X),parent(Z,Y),man(X),X\=Y.
 brothers(X):-mother(Z,X),mother(Z,Y),man(Y),X\=Y,write(Y),nl,fail.
+
+sister(X,Y):-mother(Z,X),mother(Z,Y),woman(X),X\=Y.
+sisters(X):-sister(Y,X),write(Y),nl,fail.
