@@ -75,3 +75,6 @@ mother(X):-mother(Y,X),write(Y).
 
 father(X,Y):-parent(X,Y),man(X).
 father(X):-father(Y,X),write(Y).
+
+brother(X,Y):-parent(Z,X),parent(Z,Y),man(X),X\=Y.
+brothers(X):-mother(Z,X),mother(Z,Y),man(Y),X\=Y,write(Y),nl,fail.
