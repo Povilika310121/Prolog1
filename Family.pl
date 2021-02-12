@@ -37,11 +37,6 @@ parent(tatyana,viktoria).
 parent(tatyana,maxim).
 parent(tatyana,petr).
 
-parent(nikita,bogomil).
-parent(nikita,bozhedara).
-parent(bratislava,bogomil).
-parent(bratislava,bozhedara).
-
 parent(nikita,elisei).
 parent(masha,elisei).
 
@@ -81,3 +76,6 @@ brothers(X):-mother(Z,X),mother(Z,Y),man(Y),X\=Y,write(Y),nl,fail.
 
 sister(X,Y):-mother(Z,X),mother(Z,Y),woman(X),X\=Y.
 sisters(X):-sister(Y,X),write(Y),nl,fail.
+
+b_s(X,Y):-mother(Z,X),mother(Z,Y).
+b_s(X):-b_s(X,Y),X\=Y,write(Y),nl, fail.
