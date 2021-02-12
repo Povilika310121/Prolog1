@@ -91,3 +91,6 @@ grand_pa_and_son(X,Y):-grand_pa(Y,X),man(X).
 
 grand_ma_and_son(X,Y):-grand_ma(X,Y),man(Y).
 grand_ma_and_son(X,Y):-grand_ma(Y,X),man(X).
+
+uncle(X,Y):-parent(Z,Y),brother(X,Z).
+uncles(X):-uncle(Z,X),write(Z),nl,fail.
