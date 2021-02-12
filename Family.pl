@@ -79,3 +79,6 @@ sisters(X):-sister(Y,X),write(Y),nl,fail.
 
 b_s(X,Y):-mother(Z,X),mother(Z,Y).
 b_s(X):-b_s(X,Y),X\=Y,write(Y),nl, fail.
+
+grand_pa(X,Y):-parent(Z,Y),parent(X,Z),man(X).
+grand_pas(Y):-grand_pa(X,Y),write(X),nl,fail.
