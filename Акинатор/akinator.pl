@@ -485,12 +485,13 @@ medic(hashirama,1).
 medic(hinata,0).
 medic(shikamaru,0).
 
+[gaara, gyuki, deidara, dzhiraya, ino, itachi, kakashi, kakuza, kiba, killerbi, konan, kurama, kushina, maitogai, minato, nagato, naruto, nedzhi, rin, sakura, saske, tobirama, hashirama, hinata, shikamaru]
 
 question1(X1):-	write("Is your character man?"),nl,
 				write("1. Yes"),nl,
 				write("0. NO"),nl,
 				read(X1).
-		
+
 question2(X2):-	write("Is your character have dark hair?"),nl,
 				write("1. Yes"),nl,
 				write("0. NO"),nl,
@@ -538,17 +539,15 @@ question10(X10):-write("Is your character have sharingan?"),nl,
 				read(X10).
 
 
-
-
-question9(X9):-	write("Is your character have wide eyebrows?"),nl,
+question11(X11):-	write("Is your character have wide eyebrows?"),nl,
 				write("1. Yes"),nl,
 				write("0. NO"),nl,
-				read(X9).
+				read(X11).
 
-question10(X10):-write("Is your character medic?"),nl,
+question12(X12):-write("Is your character medic?"),nl,
 				write("1. Yes"),nl,
 				write("0. NO"),nl,
-				read(X10).
+				read(X12).
 
 
 
