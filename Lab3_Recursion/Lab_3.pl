@@ -28,3 +28,7 @@ fib(N,X):-N1 is N-1,N2 is N-2, fib(N1,X1),fib(N2,X2), X is X1+X2.
 fib1(N,X):-fib1(1,1,N,X,1).
 fib1(X,_,N,X,N):-!.
 fib1(I,F,N,X,Q):-Q1 is Q+1,Z is I,I1 is F,F1 is F+Z,fib1(I1,F1,N,X,Q1).
+
+%Задание 7 Найти сумму цифр числа с помощью рекурсии вверх.
+sum(0,0):-!.
+sum(N,X):-N1 is N div 10,sum(N1,X1),X is X1+N mod 10.
