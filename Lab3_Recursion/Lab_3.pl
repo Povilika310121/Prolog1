@@ -48,3 +48,17 @@ pr(N,X):-N1 is N div 10,pr(N1,X1),X is X1*(N mod 10).
 p(N,X):-p(N,1,X).
 p(0,X,X):-!.
 p(A,Sum,X):-Am is A mod 10,Ad is A div 10,S is Sum*Am,p(Ad,S,X).
+
+% Задание 11 Выполнить указанную задачу с помощью рекурсии вверх и
+% рекурсии вниз, для каждой реализации отдельный коммит. Вариант № 1
+% Найти количество нечетных цифр числа, больших 3
+
+del2(X,Y):-X1 is X mod 10 mod 2,X1 \= 0, Y is 1.
+del2(_,Y):-Y is 0,!.
+
+kolvo_up(0,0):-!.
+kolvo_up(N,X):-N1 is N div 10, kolvo_up(N1,X1), del2(N,Y), X is X1+Y,!.
+
+kolvo_down(N,X):-kolvo_down(N,0,X).
+kolvo_down(0,X,X):-!.
+kolvo_down(A,S,X):- Ad is A div 10,del2(A,Y),S1 is S+Y, kolvo_down(Ad,S1,X),!.
