@@ -42,3 +42,9 @@ sum1(A,Sum,X):-Am is A mod 10,Ad is A div 10,S is Sum+Am,sum1(Ad,S,X).
 % Найти произведение цифр числа.
 pr(0,X):-X is 1,!.
 pr(N,X):-N1 is N div 10,pr(N1,X1),X is X1*(N mod 10).
+
+% Задание 10 Реализовать предикат с помощью рекурсии вниз. Вариант 1
+% Найти произведение цифр числа.
+p(N,X):-p(N,1,X).
+p(0,X,X):-!.
+p(A,Sum,X):-Am is A mod 10,Ad is A div 10,S is Sum*Am,p(Ad,S,X).
