@@ -32,3 +32,8 @@ fib1(I,F,N,X,Q):-Q1 is Q+1,Z is I,I1 is F,F1 is F+Z,fib1(I1,F1,N,X,Q1).
 %Задание 7 Найти сумму цифр числа с помощью рекурсии вверх.
 sum(0,0):-!.
 sum(N,X):-N1 is N div 10,sum(N1,X1),X is X1+N mod 10.
+
+%Задание 8 Найти сумму цифр числа с помощью рекурсии вниз.
+sum1(N,X):-sum1(N,0,X).
+sum1(0,X,X):-!.
+sum1(A,Sum,X):-Am is A mod 10,Ad is A div 10,S is Sum+Am,sum1(Ad,S,X).
