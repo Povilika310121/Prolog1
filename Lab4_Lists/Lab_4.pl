@@ -52,3 +52,9 @@ pr8_4:-write("kolvo is "),read(N), nl,read_list(N,List),min_list_up(List,Min),wr
 %Задание 9 Построить предикат, который возвращает true, если элемент есть в списке.
 find_el([El|_],El):-!.
 find_el([_|T], El):-find_el(T, El).
+
+%Задание 10 Построить предикат, который переворачивает список.
+mirror(List,List1):-mirror(List,[],List1,List1).
+mirror([],List1,List1,[]).
+mirror([H|List],Temp,List1,[_|B]):-mirror(List,[H|Temp],List1,B).
+
