@@ -23,3 +23,8 @@ sum_list_up([H|T],Sum):-sum_list_up(T,Sum1),Sum is Sum1+H.
 list_el_number(List,Elem,Number):-list_el_number(List,Elem,0,Number).
 list_el_number([H|_],H,Number,Number):-!.%для перебора урать "!"
 list_el_number([_|T],Elem,I,Number):-I1 is I+1,list_el_number(T,Elem,I1,Number).
+
+%Задание 4.1 Реализовать программу, которая читает список, читает элемент и находит номер первого вхождения элемента в список. В случае, если
+%элемент отсутствует, пользователю выводится соответствующее сообщение. Воспользоваться предикатами из заданий 1 и 3
+pr4_4:-write("kolvo is "),read(N), nl,read_list(N,List),write("elem is "),nl,read(Elem),list_el_number(List,Elem,Number),write(Number),!.
+pr4_4:-write("No matches!").
