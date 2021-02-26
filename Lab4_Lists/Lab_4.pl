@@ -11,3 +11,8 @@ write_list([Head|Tail]):-write(Head),nl,write_list(Tail).
 sum_lis_down(List,Sum):-sum_list_down(List,0,Sum).
 sum_list_down([],Sum,Sum):-!.
 sum_list_down([Head|Tail],S,Sum):-S1 is S+Head,sum_list_down(Tail,S1,Sum).
+
+%Задание 3 Построить предикат sum_list_up(+List, ?Summ), который проверяет, является ли Summ суммой элементов списка или записывает в
+%эту переменную сумму элементов. Для построения воспользоваться рекурсией вверх.
+sum_list_up([],0):-!.
+sum_list_up([H|T],Sum):-sum_list_up(T,Sum1),Sum is Sum1+H.
