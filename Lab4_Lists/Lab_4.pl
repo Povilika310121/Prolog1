@@ -65,3 +65,7 @@ p([Head|Tail],List):-find_el(List,Head),p(Tail,List).
 %Задание 12 Построить предикат, который удаляет элемент с заданным номером из списка.
 del(0,[_|Z], Z):-!.
 del(X,[H|Y],[H|Z]):-X1 is X-1,del(X1,Y,Z).
+
+%Задание 13 Построить предикат, который удаляет все элементы, равные данному.
+del_elem([],_,[]).
+del_elem([H|T],X,List):-(H=X->del_elem(T,X,List);List=[H|T1],del_elem(T,X,T1)).
