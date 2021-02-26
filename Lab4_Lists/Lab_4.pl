@@ -48,3 +48,7 @@ min_list_down([_|T],Temp,Min):-min_list_down(T,Temp,Min).
 
 %Задание 8 Реализовать программу, которая читает список, находит и выводит на экран его минимальный элемент. Воспользоваться предикатами из заданий 1, 6 или 7.
 pr8_4:-write("kolvo is "),read(N), nl,read_list(N,List),min_list_up(List,Min),write("Min="),write(Min).
+
+%Задание 9 Построить предикат, который возвращает true, если элемент есть в списке.
+find_el([El|_],El):-!.
+find_el([_|T], El):-find_el(T, El).
