@@ -34,3 +34,7 @@ pr4_4:-write("No matches!").
 pr4_5:-write("kolvo is "),read(N),nl,read_list(N,List),write("nom is "),nl,read(Number),list_el_number(List,Elem,Number),write(Elem),!.
 pr4_5:-write("No matches!").
 
+%Задание 6 Реализовать предикат min_list_up(+List, ?Min), который записывает минимальный элемент списка List в переменную Min или
+%проверяет, является ли значение в переменной Min минимальным элементом в списке List. Реализацию провести рекурсией вверх.
+min_list_up([H],H):-!.
+min_list_up([H|T],Min):-min_list_up(T,Min1),(H<Min1->Min=H; Min=Min1).
