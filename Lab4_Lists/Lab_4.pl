@@ -38,3 +38,10 @@ pr4_5:-write("No matches!").
 %проверяет, является ли значение в переменной Min минимальным элементом в списке List. Реализацию провести рекурсией вверх.
 min_list_up([H],H):-!.
 min_list_up([H|T],Min):-min_list_up(T,Min1),(H<Min1->Min=H; Min=Min1).
+
+%Задание 7 Реализовать предикат min_list_down(+List, ?Min), который записывает минимальный элемент списка List в переменную Min или
+%проверяет, является ли значение в переменной Min минимальным элементом в списке List. Реализацию провести рекурсией вниз.
+min_list_down([H|T],Min):-min_list_down(T,H,Min).
+min_list_down([],Min,Min):-!.
+min_list_down([H|T],Temp,Min):-H<Temp,min_list_down(T,H,Min),!.
+min_list_down([_|T],Temp,Min):-min_list_down(T,Temp,Min).
