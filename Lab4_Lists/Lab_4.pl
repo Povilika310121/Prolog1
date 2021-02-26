@@ -61,3 +61,7 @@ mirror([H|List],Temp,List1):-mirror(List,[H|Temp],List1).
 %Задание 11 Построить предикат p(Sublist,List), который возвращает true, если элементы Sublist встречается в List в том же порядке.
 p([],_):-!.
 p([Head|Tail],List):-find_el(List,Head),p(Tail,List).
+
+%Задание 12 Построить предикат, который удаляет элемент с заданным номером из списка.
+del(0,[_|Z], Z):-!.
+del(X,[H|Y],[H|Z]):-X1 is X-1,del(X1,Y,Z).
