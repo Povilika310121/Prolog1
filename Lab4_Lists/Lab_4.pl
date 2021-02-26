@@ -58,4 +58,6 @@ mirror(List,List1):-mirror(List,[],List1).
 mirror([],List1,List1).
 mirror([H|List],Temp,List1):-mirror(List,[H|Temp],List1).
 
-
+%Задание 11 Построить предикат p(Sublist,List), который возвращает true, если элементы Sublist встречается в List в том же порядке.
+p([],_):-!.
+p([Head|Tail],List):-find_el(List,Head),p(Tail,List).
