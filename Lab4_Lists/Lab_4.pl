@@ -16,3 +16,10 @@ sum_list_down([Head|Tail],S,Sum):-S1 is S+Head,sum_list_down(Tail,S1,Sum).
 %эту переменную сумму элементов. Для построения воспользоваться рекурсией вверх.
 sum_list_up([],0):-!.
 sum_list_up([H|T],Sum):-sum_list_up(T,Sum1),Sum is Sum1+H.
+
+%Задание 4 Построить предикат, list_el_numb(+List, ?Elem, ?Number). Если задано значение Elem, то предикат записывает в Number номер первого
+%вхождения Elem. Если задано значение Number, то предикат записывает в Elem значение, находящееся в списке под номером Number. Если заданы
+%оба значения, то предикат проверяет, находится ли элемент Elem в списке под номером Numb.
+list_el_number(List,Elem,Number):-list_el_number(List,Elem,0,Number).
+list_el_number([H|_],H,Number,Number):-!.%для перебора урать "!"
+list_el_number([_|T],Elem,I,Number):-I1 is I+1,list_el_number(T,Elem,I1,Number).
