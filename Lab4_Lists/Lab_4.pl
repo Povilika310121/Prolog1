@@ -85,3 +85,7 @@ unik([H|T],[H|T1]):-unik(T,T1),!.
 count([],_,Kolvo,Kolvo):-!.
 count(List,El,Kolvo):-count(List,El,0,Kolvo).
 count([H|T],El,Num,Kolvo):-(H=:=El->Num1 is Num+1;Num1 is Num),count(T,El,Num1,Kolvo).
+
+%Задание 17 Построить предикат, получающий длину списка.
+leng([],0):-!.
+leng([H|T],X):-leng(T,X1),X is X1+1.
