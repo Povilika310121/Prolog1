@@ -644,13 +644,15 @@ question(20,X):-write("Is your character a child?"),nl,
 				write("0. NO"),nl,
 				read(X).
 
-pr(N,ListG):-question(N,X),check(N,X,ListG,[],ListG1),(alone(ListG1)->writeH(ListG1),!;N1 is N+1,pr(N1,ListG1)).
-check(N,X,[],temp,temp):-!.
-check(N,X,[Name|Tail],temp,ListG1):-(question(N,Name,X)->check(N,X,Tail,[Name|temp],ListG1);check(N,X,Tail,temp,ListG1)).
-
 pr:-pr(1,[gaara, gyuki, deidara, dzhiraya, ino, itachi, kakashi, kakuza, kiba,
 killerbi, konan, kurama, kushina, maitogai, minato, nagato, naruto,
        nedzhi, rin, sakura, saske, tobirama, tsunade, hashirama, hinata, shikamaru]).
 
+
+pr(N,ListG):-question(N,X),check(N,X,ListG,[],ListG1),(alone(ListG1)->writeH(ListG1),!;N1 is N+1,pr(N1,ListG1)).
+
+check(N,X,[],Buffer,Buffer):-!.
+check(N,X,[Cur|Tail],Buffer,ListG1):-(question(N,Cur,X)->check(N,X,Tail,[Cur|Buffer],ListG1);check(N,X,Tail,Buffer,ListG1)).
+
 alone([_|Notalone]):-Notalone=[].
-writeH([Head|_]):-write(Head).
+writeH([H|_]):-write(H).
