@@ -80,3 +80,8 @@ chek([]):-!.
 unik([],[]):-!.
 unik([H|T],T1):-find_el(T,H),unik(T,T1),!.
 unik([H|T],[H|T1]):-unik(T,T1),!.
+
+%Задание 16 Построить предикат, который получает для данного элемента количество раз, которое он встречается в списке.
+count([],_,Kolvo,Kolvo):-!.
+count(List,El,Kolvo):-count(List,El,0,Kolvo).
+count([H|T],El,Num,Kolvo):-(H=:=El->Num1 is Num+1;Num1 is Num),count(T,El,Num1,Kolvo).
