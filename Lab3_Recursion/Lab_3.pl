@@ -86,3 +86,9 @@ kol_del(N,X):-kol_del(N,N,X),!.
 sum_pr_down(_,0,0):-!.
 sum_pr_down(N,I,Sum):-N mod I =:=0,prost(I),I1 is I-1,sum_pr_down(N,I1,Sum1),Sum is Sum1+I;I1 is I-1,sum_pr_down(N,I1,Sum1), Sum is Sum1.
 sum_pr_down(N,X):-sum_pr_down(N,N,X),!.
+
+%Задание 15 Вариант № 1
+%Найти произведение таких делителей числа, сумма цифр которых меньше, чем сумма цифр исходного числа.
+pr_del(_,0,1):-!.
+pr_del(N,X):-pr_del(N,N,X),!.
+pr_del(N,I,Pr):- sum(N,X3),(N mod I =:=0,sum(I,X1),X1<X3->I1 is I-1,pr_del(N,I1,Pr1),Pr is Pr1*I;I1 is I-1,pr_del(N,I1,Pr1), Pr is Pr1).
