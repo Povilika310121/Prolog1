@@ -138,7 +138,7 @@ pr_people:-People=[_,_,_,_],
 
     write(People).
 
-	%Задание8
+	%Задание7
 pr_sport:-Sport=[_,_,_],
 
      Sport=[_,_,_],
