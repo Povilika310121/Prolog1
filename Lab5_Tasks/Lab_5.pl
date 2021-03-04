@@ -113,3 +113,28 @@ pr_zizha:-Zizha=[_,_,_,_],
     next_to([_,stakan],[_,banka],Zizha),
    write(Zizha),!.
 
+%Задание 6 
+pr_people:-People=[_,_,_,_],
+    in_list(People,[_,dancer]),
+    in_list(People,[_,artist]),
+    in_list(People,[_,singer]),
+    in_list(People,[_,writer]),
+
+    in_list(People,[voronov,_]),
+    in_list(People,[pavlov,_]),
+    in_list(People,[livec,_]),
+    in_list(People,[sugar,_]),
+
+    not(in_list(People,[voronov,singer])),
+    not(in_list(People,[livec,singer])),
+
+    not(in_list(People,[pavlov,artist])),
+    not(in_list(People,[pavlov,writer])),
+
+    not(in_list(People,[sugar,writer])),
+    not(in_list(People,[voronov,writer])),
+   %Из пунктов выше видно, что 3 человека не писатели, значит автоматически in_list(People,[livec,writer]), и, а следовательно и строчка ниже
+    not(in_list(People,[voronov,artist])),
+
+    write(People).
+
