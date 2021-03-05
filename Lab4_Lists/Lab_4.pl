@@ -91,10 +91,7 @@ leng([],0):-!.
 leng([H|T],X):-leng(T,X1),X is X1+1.
 
 %18.2 Индекс минимального элемента
-min_in([H|T], I):-Min is H, min_in(T,I,0,Min).
-min_in([],I,I,_):-!.
-min_in([H|T],I,Temp,Min):-H < Min, Min1 is H,I1 is Temp+1, min_in(T,I,I1,Min1),!.
-min_in([H|T],I,Temp,Min):-(I1 is Temp+1,min_in(T,I,I1,Min)),!.
+min_index(List,Index):-list_el_number(List,Elem,Index),min_list_down(List,Elem).
 
 %18.15 Локальный минимум
 local_min([H1|[H2|_]],0):-H1<H2,!.
