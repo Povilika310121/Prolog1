@@ -6,7 +6,7 @@ write_list([]):-!.
 write_list([Head|Tail]):-write(Head),nl,write_list(Tail).
 
 %Задание 2 Реализовать предикат sum_list_down(+List, ?Summ), который проверяет, является ли Summ суммой элементов списка или записывает в эту переменную сумму элементов.
-%Для построения воспользоваться рекурсией вниз. Реализовать программу, читающую список, считающую сумму элементов и выводящую сумму на экран, с использованием 
+%Для построения воспользоваться рекурсией вниз. Реализовать программу, читающую список, считающую сумму элементов и выводящую сумму на экран, с использованием
 %предикатов из задания 1 и построенного предиката sum_list_down /2.
 sum_lis_down(List,Sum):-sum_list_down(List,0,Sum).
 sum_list_down([],Sum,Sum):-!.
@@ -60,7 +60,7 @@ mirror([H|List],Temp,List1):-mirror(List,[H|Temp],List1).
 
 %Задание 11 Построить предикат p(Sublist,List), который возвращает true, если элементы Sublist встречается в List в том же порядке.
 p([],_):-!.
-p([Head|Tail],List):-find_el(List,Head),p(Tail,List).
+p([Head|Tail],[HeadList|TailList]):-(Head is HeadList -> p(Tail,TailList);p([Head|Tail],TailList)).
 
 %Задание 12 Построить предикат, который удаляет элемент с заданным номером из списка.
 del(0,[_|Z], Z):-!.
@@ -82,10 +82,16 @@ unik([H|T],T1):-find_el(T,H),unik(T,T1),!.
 unik([H|T],[H|T1]):-unik(T,T1),!.
 
 %Задание 16 Построить предикат, который получает для данного элемента количество раз, которое он встречается в списке.
-count([],_,Kolvo,Kolvo):-!.
 count(List,El,Kolvo):-count(List,El,0,Kolvo).
+count([],_,Kolvo,Kolvo):-!.
 count([H|T],El,Num,Kolvo):-(H=:=El->Num1 is Num+1;Num1 is Num),count(T,El,Num1,Kolvo).
 
 %Задание 17 Построить предикат, получающий длину списка.
 leng([],0):-!.
 leng([H|T],X):-leng(T,X1),X is X1+1.
+
+%18.2 Индекс минимального элемента
+min_in([H|T], I):-Min is H, min_in(T,I,0,Min).
+min_in([],I,I,_):-!.
+min_in([H|T],I,Temp,Min):-H < Min, Min1 is H,I1 is Temp+1, min_in(T,I,I1,Min1),!.
+min_in([H|T],I,Temp,Min):-(I1 is Temp+1,min_in(T,I,I1,Min)),!.
