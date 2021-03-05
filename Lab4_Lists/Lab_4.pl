@@ -101,3 +101,6 @@ local_min([H1|[H2|_]],0):-H1<H2,!.
 local_min([H1|[H2]],1):-H2<H1,!.
 local_min([H1|[H2|[H3|_]]],1):-H2<H1,H2<H3,!.
 local_min([_|T],I):-N is I-1,local_min(T,N). 
+
+%18.43 Количество минимальных элементов
+kol_min(List,X):- min_list_down(List,Elem),count(List,Elem,X).
