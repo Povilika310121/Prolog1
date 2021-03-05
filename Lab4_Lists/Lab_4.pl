@@ -95,3 +95,9 @@ min_in([H|T], I):-Min is H, min_in(T,I,0,Min).
 min_in([],I,I,_):-!.
 min_in([H|T],I,Temp,Min):-H < Min, Min1 is H,I1 is Temp+1, min_in(T,I,I1,Min1),!.
 min_in([H|T],I,Temp,Min):-(I1 is Temp+1,min_in(T,I,I1,Min)),!.
+
+%18.15 Локальный минимум
+local_min([H1|[H2|_]],0):-H1<H2,!.
+local_min([H1|[H2]],1):-H2<H1,!.
+local_min([H1|[H2|[H3|_]]],1):-H2<H1,H2<H3,!.
+local_min([_|T],I):-N is I-1,local_min(T,N). 
