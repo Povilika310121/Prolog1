@@ -118,3 +118,11 @@ less_left(List):-less_left(List,0,0).
 less_left([H1|[H2]],Count,Kolvo):-(H2<H1->(Count1 is Count+1,write(Count1),nl,Kolvo1 is Kolvo + 1),write("Kolvo = "),write(Kolvo1);write("Kolvo ="),write(Kolvo)),!.
 less_left([H1|[H2|T]],Count,Kolvo):-H2<H1,Count1 is Count+1,write(Count1),nl,Kolvo1 is Kolvo + 1,less_left([H2|T],Count1,Kolvo1),!.
 less_left([H1|[H2|T]],Count,Kolvo):-H2>=H1,Count1 is Count+1,less_left([H2|T],Count1,Kolvo),!.
+
+%18.28
+pr1_28(List):-min_index(List,Index),find_max_elem(List,Max),last_max(List,Max,Place),cut(List,Index,Place,New),write_list(New),!.
+cut(List,Index,Place,New):-Place1 is Place-1,cut(List,0,Index,Place1,New).
+cut(_,Count,_,Count,_):-!.
+cut(_,_,Index,Place,New):-Index+1 = Place,New = [],!.
+cut([_|T],Count,Index,Place,New):-Count =< Index,Count1 is Count + 1,cut(T,Count1,Index,Place,New).
+cut([H|T],Count,Index,Place,New):-Count > Index,Count < Place,Count1 is Count + 1,New = [H|A],cut(T,Count1,Index,Place,A).
