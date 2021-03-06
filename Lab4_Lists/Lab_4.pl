@@ -112,3 +112,9 @@ find_max_elem([H|T],A,Max):-H=<A,find_max_elem(T,A,Max).
 last_max(List,Max,I):-last_max(List,0,_,Max,I).
 last_max([],_,Max,_,Max):-!.
 last_max([H|T],A,A2,Max,I):-A1 is A+1,(Max =:= H ->A3 is A1,last_max(T,A1,A3,Max,I);last_max(T,A1,A2,Max,I)).
+
+%18.37
+less_left(List):-less_left(List,0,0).
+less_left([H1|[H2]],Count,Kolvo):-(H2<H1->(Count1 is Count+1,write(Count1),nl,Kolvo1 is Kolvo + 1),write("Kolvo = "),write(Kolvo1);write("Kolvo ="),write(Kolvo)),!.
+less_left([H1|[H2|T]],Count,Kolvo):-H2<H1,Count1 is Count+1,write(Count1),nl,Kolvo1 is Kolvo + 1,less_left([H2|T],Count1,Kolvo1),!.
+less_left([H1|[H2|T]],Count,Kolvo):-H2>=H1,Count1 is Count+1,less_left([H2|T],Count1,Kolvo),!.
