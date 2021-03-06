@@ -93,12 +93,22 @@ leng([H|T],X):-leng(T,X1),X is X1+1.
 %18.2 Индекс минимального элемента
 min_index(List,Index):- min_list_down(List,Elem),list_el_number(List,Elem,Index),!.
 
-
 %18.15 Локальный минимум
 local_min([H1|[H2|_]],0):-H1<H2,!.
 local_min([H1|[H2]],1):-H2<H1,!.
 local_min([H1|[H2|[H3|_]]],1):-H2<H1,H2<H3,!.
-local_min([_|T],I):-N is I-1,local_min(T,N). 
+local_min([_|T],I):-N is I-1,local_min(T,N).
 
 %18.43 Количество минимальных элементов
 kol_min(List,X):- min_list_down(List,Elem),count(List,Elem,X).
+
+%18.1
+pr1_1(List,Res):-find_max_elem(List,Max),last_max(List,Max,I),leng(List,N),Res is N-I,!.
+find_max_elem([H|T],Max):-find_max_elem([H|T],H,Max).
+find_max_elem([],Max,Max):-!.
+find_max_elem([H|T],A,Max):-H > A,A1 is H,find_max_elem(T,A1,Max).
+find_max_elem([H|T],A,Max):-H=<A,find_max_elem(T,A,Max).
+
+last_max(List,Max,I):-last_max(List,0,_,Max,I).
+last_max([],_,Max,_,Max):-!.
+last_max([H|T],A,A2,Max,I):-A1 is A+1,(Max =:= H ->A3 is A1,last_max(T,A1,A3,Max,I);last_max(T,A1,A2,Max,I)).
