@@ -72,7 +72,7 @@ kol_p_m([45|T],Plus,KolP,Minus,KolM):-Minus1 is Minus+1,
     kol_p_m(T,Plus,KolP,Minus1,KolM).
 kol_p_m([_|T],Plus,KolP,Minus,KolM):-kol_p_m(T,Plus,KolP,Minus,KolM).
 
-%������� 8
+%Задание 8
 list_el_num([H|T],El,Num):-list_el_num([H|T],El,Num,0).
 list_el_num([],119,0,_):-write("w no found"),nl,!.
 list_el_num([],120,0,_):-write("x no found"),nl,!.
@@ -87,3 +87,7 @@ findw(St):-list_el_num(St,119,N1),list_el_num(St,120,N2),(N1<N2-> write("Found: 
 write_str_n(_,0):-!.
 write_str_n(A,N):-write_str(A), nl, N1 is N-1, write_str_n(A, N1).
 big_st:-read_str(Stroka1,N1), read_str(Stroka2, N2), (N1>N2->N3 is N1-N2, write_str_n(Stroka1, N3); N3 is N2-N1, write_str_n(Stroka2, N3)).
+
+%Задание 10
+abc_check:-read_str(Stroka,_), find(Stroka).
+find([H1,H2,H3|T]):-(H1=97, H2=98, H3=99 -> write_str([119,119,119|T]);append1([H1,H2,H3|T], [122,122,122], Str), write_str(Str)).
