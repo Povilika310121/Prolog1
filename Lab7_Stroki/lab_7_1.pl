@@ -141,3 +141,14 @@ aba:-read_str(Stroka,_),aba(Stroka,0,Kol),write(Kol).
 aba([],Kol, Kol):-!.
 aba([97,98,97|T],N,Kol):-N1 is N+1 ,aba(T,N1,Kol),!.
 aba([_|T],N,Kol):-aba(T,N,Kol).
+
+%Задание 20 		
+space:-read_str(St,_),space(St,0,[],List),space(List,StStart),
+    reverse(StStart,StEnd),space(StEnd,Stroka),reverse(Stroka,StrokaR),
+    write_str(StrokaR).
+space([],_,NL,NL):-!.
+space([32|T],0,Buffer,NL):-append1(Buffer,[32],BufferN),space(T,1,BufferN,NL),!.
+space([32|T],KolS,Buffer,NL):-space(T,KolS,Buffer,NL),!.
+space([H|T],_,Buffer,NL):-append1(Buffer,[H],BufferN),space(T,0,BufferN,NL),!.
+space([32|T],NSt):-space(T,NSt),!.
+space(Nst,Nst):-!.
