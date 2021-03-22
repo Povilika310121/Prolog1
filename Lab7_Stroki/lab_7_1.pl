@@ -25,10 +25,13 @@ r_str1(32,[H|T],I,N):-I1 is N+1, r_str1(H,T , I, I1),!.
 r_str1(_,[H|T],I,N):-r_str1(H, T, I, N).
 
 %Задание 3 Дана строка, определить самое частое слово
+reverse(A, Z) :- reverse(A,Z,[]).
+reverse([],Z,Z).
+reverse([H|T],Z,Acc) :- reverse(T,Z,[H|Acc]).
 
 list_words:-read_str(A,_),append1([32],A,A1),reverse(A1,AR),list_words(AR,[],_,[]).
 list_words([],LW,LW,_):-!.
-list_words([H|T],LW,LWN,W):-(H=32 -> append([W],LW,LW1),list_words(T,LW1,LWN,[]);
+list_words([H|T],LW,LWN,W):-(H=32 -> append1([W],LW,LW1),list_words(T,LW1,LWN,[]);
 append1([H],W,W1),list_words(T,LW,LWN,W1)).
 
 kol_repeat_in_list([H|T],X,K):-kol_repeat_in_list([H|T],X,0,K).
@@ -98,3 +101,8 @@ check(A,N):-(N>10-> Str=[_,_,_,_,_,_],append1(Str,_,A), write_str(Str);N1 is 6-N
 plus(A,0):-write_str(A),!.
 plus(A,N):-N1 is N-1, append1(A,[111], Str), plus(Str,N1).
 
+%Задание 12
+zamena:-read_str(Stroka,_),zamena(Stroka,0,[],NewSt),reverse(NewSt,R),write_str(R).
+zamena([],_,St,St):-!.
+zamena([H|T],Counter,NewSt,NStr):-Counter1 is Counter+1,0 is Counter1 mod 2,(H\=97,H\=98-> append1([97],NewSt,NSt1),zamena(T,Counter1,NSt1,NStr),!;append1([99],NewSt,NSt1),zamena(T,Counter1,NSt1,NStr)),!.
+zamena([H|T],Counter,NewSt,NStr):-Counter1 is Counter+1,append1([H],NewSt,NSt1),zamena(T,Counter1,NSt1,NStr).
