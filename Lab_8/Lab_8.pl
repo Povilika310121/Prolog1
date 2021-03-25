@@ -26,16 +26,16 @@ write_list_str([H|T]):-write_str(H),nl,write_list_str(T).
 in_list([El|_],El).
 in_list([_|T],El):-in_list(T,El).
 
-%__1__
+%__1_1__
 pr8_1:- see('c:/Users/Виктория/Documents/GitHub/Prolog1/Lab_8/labb.txt'),read_list_str(List, Lenght),seen,max(Lenght, Max), write(Max).
 
-%__2__
+%__1_2__
 pr8_2:- see('c:/Users/Виктория/Documents/GitHub/Prolog1/Lab_8/labb.txt'),read_list_str(List,_), seen, space(List, 0, Kolvo),write(Kolvo).
 space([],K,K):-!.
 space([H|T], K, Kolvo):-not(in_list(H,32)),K1 is K+1, space(T, K1, Kolvo),!.
 space([_|T], K, Kolvo):-space(T, K, Kolvo),!.
 
-%__3__
+%__1_3__
 pr8_3:- see('c:/Users/Виктория/Documents/GitHub/Prolog1/Lab_8/labb.txt'),read_list_str(List,N),seen,all_symbol(N,0,K),write("Number of all symbols  "),write(K), nl,symbols(List,0,Kol),write("Number of symbols A-a  "),write(Kol),nl, Sr is K div Kol,write(Sr), nl, vyvedi(List,Sr).
 all_symbol([],K, K):-!.
 all_symbol([H|T], Kolvo, K):-Kolvo1 is Kolvo +H, all_symbol(T, Kolvo1, K).
@@ -45,3 +45,18 @@ symbols_a([],K, K):-!.
 symbols_a([H|T], K, Kolvo):-(H==97,K1 is K+1,symbols_a(T, K1, Kolvo));(H==65,K1 is K+1,symbols_a(T, K1, Kolvo));(symbols_a(T, K, Kolvo)).
 vyvedi([],_):-!.
 vyvedi([H|T], Sr):-(symbols_a(H,0,K),K>Sr-> write_str(H),vyvedi(T, Sr);vyvedi(T, Sr)).
+
+%__1_4__
+pr8_4:-see('c:/Users/Виктория/Documents/GitHub/Prolog1/Lab_8/labb.txt'),read_str(A,_,1),seen,append1([32],A,A1),reverse(A1,AR),list_words(AR,[],LW,[]),often_word_in_list(LW,_,Word,0,_),write_str(Word).
+
+list_words:-read_str(A,_,_),append1([32],A,A1),reverse(A1,AR),list_words(AR,[],_,[]).
+list_words([],LW,LW,_):-!.
+list_words([H|T],LW,LWN,W):-(H=32 -> append([W],LW,LW1),list_words(T,LW1,LWN,[]);
+append1([H],W,W1),list_words(T,LW,LWN,W1)).
+
+kol_repeat_in_list([H|T],X,K):-kol_repeat_in_list([H|T],X,0,K).
+kol_repeat_in_list([],_,Kol,Kol):-!.
+kol_repeat_in_list([H|T],X,K,Kol):-(H=X -> K1 is K+1,kol_repeat_in_list(T,X,K1,Kol);kol_repeat_in_list(T,X,K,Kol)).
+
+often_word_in_list([],Word,Word,Kol,Kol):-!.
+often_word_in_list([H|T],W,Word,K,Kol):-kol_repeat_in_list([H|T],H,K1),(K1>K -> Kol1 = K1,W1=H,often_word_in_list(T,W1,Word,K1,Kol1);often_word_in_list(T,W,Word,K,Kol)).
