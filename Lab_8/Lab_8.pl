@@ -18,7 +18,7 @@ append1([],List2,List2).
 append1([H1|T1],List2,[H1|T3]):-append1(T1,List2,T3).
 
 write_str([]):-!.
-write_str([H|Tail]):-put(H),write_str(Tail).
+write_str([H|Tail]):-write(H), write(" "),write_str(Tail).
 
 write_list_str([]):-!.
 write_list_str([H|T]):-write_str(H),nl,write_list_str(T).
@@ -60,3 +60,11 @@ kol_repeat_in_list([H|T],X,K,Kol):-(H=X -> K1 is K+1,kol_repeat_in_list(T,X,K1,K
 
 often_word_in_list([],Word,Word,Kol,Kol):-!.
 often_word_in_list([H|T],W,Word,K,Kol):-kol_repeat_in_list([H|T],H,K1),(K1>K -> Kol1 = K1,W1=H,often_word_in_list(T,W1,Word,K1,Kol1);often_word_in_list(T,W,Word,K,Kol)).
+
+%__2_1__
+pr8_2_1:-see('c:/Users/Виктория/Documents/GitHub/Prolog1/Lab_8/labb.txt'),read_str(List, _, _),seen, russian(List,0,K), write(K).
+russian([],K, K):-!.
+russian([H|T], Kolvo, K):-((H>1039, H<1104)->Kolvo1 is Kolvo +1, russian(T, Kolvo1, K); russian(T, Kolvo, K)).
+
+
+
