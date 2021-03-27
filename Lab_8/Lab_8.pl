@@ -68,3 +68,9 @@ russian([H|T], Kolvo, K):-((H>1039, H<1104)->Kolvo1 is Kolvo +1, russian(T, Kolv
 
 
 
+pr8_2_18:- see('c:/Users/Виктория/Documents/GitHub/Prolog1/Lab_8/labb.txt'),read_list_str(List,N),seen, dat(List,N).
+dat([],[]):-!.
+dat([H|T],[H1|T1]):-(H1>9->data(H, H1), dat(T,T1); dat(T, T1)).
+data([],_):-!.
+data(_, L):-L<10,!.
+data([H1, H2, H3, H4, H5, H6, H7, H8, H9, H10|T], L):-(H1>47, H1<52, H2>47,H2<58, H3==46, H4>47,H4<50, H5>47,H5<58, H6==46, H7>47, H7<58, H8>47, H8<58,H9>47,H9<58, H10>47, H10<58-> put(H1), put(H2), put(H3), put(H4), put(H5), put(H6), put(H7), put(H8), put(H9), put(H10),nl,L1 is L-10, data(T, L1); L1 is L - 1,data([H2, H3, H4, H5, H6, H7, H8, H9, H10|T], L-1)).
