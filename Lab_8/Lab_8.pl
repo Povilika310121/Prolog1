@@ -84,7 +84,7 @@ dat([H|T],[H1|T1]):-(H1>9->data(H, H1), dat(T,T1); dat(T, T1)).
 data([],_):-!.
 data(_, L):-L<10,!.
 data([H1, H2, H3, H4, H5, H6, H7, H8, H9, H10|T], L):-(H1>47, H1<52, H2>47,H2<58, H3==46, H4>47,H4<50, H5>47,H5<58, H6==46, H7>47, H7<58, H8>47, H8<58,H9>47,H9<58, H10>47, H10<58-> put(H1), put(H2), put(H3), put(H4), put(H5), put(H6), put(H7), put(H8), put(H9), put(H10),nl,L1 is L-10, data(T, L1); L1 is L - 1,data([H2, H3, H4, H5, H6, H7, H8, H9, H10|T], L-1)).
-
+%__3__
 pr3_:-see('c:/Users/Виктория/Documents/GitHub/Prolog1/Lab_8/labb.txt'),read_str(List,_,1),seen,append(List,[32],A1),date_time(A1).
 
 date_time([]):-!.
@@ -103,3 +103,22 @@ month([_|_],_,_,_):-!,false.
 year([32|Tail],Year,Year,Tail):-!.
 year([Head|Tail],I,Year,After_Year):-Head >=48,Head =<57,append(I,[Head],I1),year(Tail,I1,Year,After_Year),!.
 year([_|_],_,_,_):-!,false.
+
+%__4_18__
+pr4_18:-see('c:/Users/Виктория/Documents/GitHub/Prolog1/Lab_8/labb.txt'),read_str(List,_,1),seen, list_numbers(List, Chisla),append1(Chisla,[[100]], Ch),kolvo(Ch,0,0,_).
+
+list_numbers(A,LW):-append1([32],A,A1),reverse(A1,List),list_numbers(List,[],LW,[]).
+list_numbers([],LW,LW,_):-!.
+list_numbers([H|T],LW,LWN,W):-((H=32;(H>=58;H=<47))-> append([W],LW,LW1),list_numbers(T,LW1,LWN,[]);(H<58,H>47->append1([H],W,W1),list_numbers(T,LW,LWN,W1))).
+
+kolvo([[100]],_,_,I):-write(I),!.
+kolvo([H|T],Chislo,K,_):-kol(H,0,K1), (K1>=Chislo-> Chislo1 is K1, kolvo(T,Chislo1, K1, K1); kolvo(T,Chislo,K, K)).
+kol([],K,K):-!.
+kol([],_,_):-!.
+kol([_|T],Kolvo,K):-Kolvo1 is Kolvo+1,kol(T, Kolvo1, K).
+
+
+
+
+
+
