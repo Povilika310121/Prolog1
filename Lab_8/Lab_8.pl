@@ -18,7 +18,7 @@ append1([],List2,List2).
 append1([H1|T1],List2,[H1|T3]):-append1(T1,List2,T3).
 
 write_str([]):-!.
-write_str([H|Tail]):-write(H), write(" "),write_str(Tail).
+write_str([H|Tail]):-put(H),write_str(Tail).
 
 write_list_str([]):-!.
 write_list_str([H|T]):-write_str(H),nl,write_list_str(T).
@@ -26,11 +26,15 @@ write_list_str([H|T]):-write_str(H),nl,write_list_str(T).
 in_list([El|_],El).
 in_list([_|T],El):-in_list(T,El).
 
+reverse(A, Z) :- reverse(A,Z,[]).
+reverse([],Z,Z).
+reverse([H|T],Z,Acc) :- reverse(T,Z,[H|Acc]).
+
 %__1_1__
-pr8_1:- see('c:/Users/Виктория/Documents/GitHub/Prolog1/Lab_8/labb.txt'),read_list_str(List, Lenght),seen,max(Lenght, Max), write(Max).
+pr8_1:- see('c:/Users/Виктория/Documents/GitHub/Prolog1/Lab_8/labb.tx'),read_list_str(List, Lenght),seen,max(Lenght, Max), write(Max).
 
 %__1_2__
-pr8_2:- see('c:/Users/Виктория/Documents/GitHub/Prolog1/Lab_8/labb.txt'),read_list_str(List,_), seen, space(List, 0, Kolvo),write(Kolvo).
+pr8_2:- see('c:/Users/Виктория/Documents/GitHub/Prolog1/Lab_8/labb.tx'),read_list_str(List,_), seen, space(List, 0, Kolvo),write(Kolvo).
 space([],K,K):-!.
 space([H|T], K, Kolvo):-not(in_list(H,32)),K1 is K+1, space(T, K1, Kolvo),!.
 space([_|T], K, Kolvo):-space(T, K, Kolvo),!.
@@ -49,7 +53,7 @@ vyvedi([H|T], Sr):-(symbols_a(H,0,K),K>Sr-> write_str(H),vyvedi(T, Sr);vyvedi(T,
 %__1_4__
 pr8_4:-see('c:/Users/Виктория/Documents/GitHub/Prolog1/Lab_8/labb.txt'),read_str(A,_,1),seen,append1([32],A,A1),reverse(A1,AR),list_words(AR,[],LW,[]),often_word_in_list(LW,_,Word,0,_),write_str(Word).
 
-list_words:-read_str(A,_,_),append1([32],A,A1),reverse(A1,AR),list_words(AR,[],_,[]).
+list_words(A,LW):-append1([32],A,A1),reverse(A1,AR),list_words(AR,[],LW,[]).
 list_words([],LW,LW,_):-!.
 list_words([H|T],LW,LWN,W):-(H=32 -> append([W],LW,LW1),list_words(T,LW1,LWN,[]);
 append1([H],W,W1),list_words(T,LW,LWN,W1)).
@@ -66,8 +70,14 @@ pr8_2_1:-see('c:/Users/Виктория/Documents/GitHub/Prolog1/Lab_8/labb.txt'),read_s
 russian([],K, K):-!.
 russian([H|T], Kolvo, K):-((H>1039, H<1104)->Kolvo1 is Kolvo +1, russian(T, Kolvo1, K); russian(T, Kolvo, K)).
 
+%__2_9__
+pr8_2_9:-see('c:/Users/Виктория/Documents/GitHub/Prolog1/Lab_8/labb.txt'),read_str(List,N,1),reverse(List,B),N1 is N div 2, palindrom(List, B, N1),seen.
 
+palindrom([_|_],[_|_],0):-!.
+palindrom([H1|T1],[H2|T2], I):-H1=H2,I1 is I-1, palindrom(T1,T2, I1),!.
+palindrom([_|_],[_|_],_):-fail,!.
 
+%__2_18__
 pr8_2_18:- see('c:/Users/Виктория/Documents/GitHub/Prolog1/Lab_8/labb.txt'),read_list_str(List,N),seen, dat(List,N).
 dat([],[]):-!.
 dat([H|T],[H1|T1]):-(H1>9->data(H, H1), dat(T,T1); dat(T, T1)).
