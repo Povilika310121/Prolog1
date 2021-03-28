@@ -64,11 +64,9 @@ kolvo_down(0,X,X):-!.
 kolvo_down(A,S,X):- Ad is A div 10,del2(A,Y),S1 is S+Y, kolvo_down(Ad,S1,X),!.
 
 % Задание 12. Найти НОД двух чисел. +
-nod(A,A,A):-A\=0,!.
-nod(0,B,B):-!.
 nod(A,0,A):-!.
-nod(A,B,Nod):-A>B,C is A mod B, nod(C,B,Nod),!.
-nod(A,B,Nod):-A<B,C is B mod A, nod(A,C,Nod),!.
+nod(A,B,Nod):-A>B, R is A mod B, nod(B,R,Nod),!.
+nod(A,B,Nod):-A=<B,R is B mod A, nod(A,R,Nod),!.
 
 %Проверить число на простоту
 prost(N,X):- N mod X =:= 0,!.
