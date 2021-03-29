@@ -51,7 +51,7 @@ pr_sochet:-read_str(A,N),read(K),sochet(B,K,A),write_str(B),nl,fail.
 make_ar(0,[]):-!.
 make_ar(K,[K|Tail]):-K1 is K-1,make_ar(K1,Tail).
 
-aa_razm_p:-tell('c:/Users/Âèêòîðèÿ/Documents/GitHub/Prolog1/Lab_9/Out.txt'),not(aa_razm_P),nl,told.
+aa_razm_p:-tell('c:/Users/Ð’Ð¸ÐºÑ‚Ð¾Ñ€Ð¸Ñ/Documents/GitHub/Prolog1/Lab_9/Out.txt'),not(aa_razm_P),nl,told.
 aa_razm_P:-make_ar(5,Pos),sochet(Pos_a,2,Pos),put_pos(Word,Pos_a,[97]),
 		 in_list([98,99,100,101,102],S1),
 		 in_free_pos(Word,S1),
@@ -76,7 +76,7 @@ in_free_pos([H1,H2,H3,H4,H5],Sim):-(var(H1)->H1 is Sim),!;
 (var(H5)->H5 is Sim).
 
 %3
-aa_razm:-tell('c:/Users/Âèêòîðèÿ/Documents/GitHub/Prolog1/Lab_9/Out.txt'),not(aa_razm_), nl, told.
+aa_razm:-tell('c:/Users/Ð’Ð¸ÐºÑ‚Ð¾Ñ€Ð¸Ñ/Documents/GitHub/Prolog1/Lab_9/Out.txt'),not(aa_razm_), nl, told.
 aa_razm_:-make_ar(5,Pos),sochet(Pos_a,2,Pos),put_pos(Word,Pos_a,[97]),
 		 in_list_exlude([98,99,100,101,102],S1,NList),
 		 in_free_pos(Word,S1),
@@ -87,7 +87,7 @@ aa_razm_:-make_ar(5,Pos),sochet(Pos_a,2,Pos),put_pos(Word,Pos_a,[97]),
 		 write_str(Word),nl,fail.
 
 %4
-ss_razm:-tell('c:/Users/Âèêòîðèÿ/Documents/GitHub/Prolog1/Lab_9/Out.txt'),not(ss_razm_),told.
+ss_razm:-tell('c:/Users/Ð’Ð¸ÐºÑ‚Ð¾Ñ€Ð¸Ñ/Documents/GitHub/Prolog1/Lab_9/Out.txt'),not(ss_razm_),told.
 ss_razm_:-make_ar(5,Pos),sochet(Pos_s,2,Pos),in_list([97,98,99,100,101,102],Simbol),put_pos(Word,Pos_s,[Simbol]),in_list_exlude([97,98,99,100,101,102],Simbol,List),
 		 in_list_exlude(List,S1,NList),
 		 in_free_pos(Word,S1),
@@ -98,7 +98,7 @@ ss_razm_:-make_ar(5,Pos),sochet(Pos_s,2,Pos),in_list([97,98,99,100,101,102],Simb
 		 write_str(Word),nl,fail.
 
 %5
-ss_2_razm:-tell('c:/Users/Âèêòîðèÿ/Documents/GitHub/Prolog1/Lab_9/Out.txt'),not(ss_2_razm_),told.
+ss_2_razm:-tell('c:/Users/Ð’Ð¸ÐºÑ‚Ð¾Ñ€Ð¸Ñ/Documents/GitHub/Prolog1/Lab_9/Out.txt'),not(ss_2_razm_),told.
 ss_2_razm_:-make_ar(6,Pos),sochet([H1,H2],2,Pos),in_list([97,98,99,100,101,102],Simbol1), put_pos6(Word,[H1,H2],[Simbol1]),in_list_exlude([97,98,99,100,101,102],Simbol1,NList), in_list_exlude(Pos,H1,NPos),in_list_exlude(NPos,H2,NNPos),sochet(Pos_,2,NNPos),in_list(NList,Simbol2),put_pos6(Word,Pos_,[Simbol2]),
 		 in_list_exlude(NList,Simbol2,LastSimbol),
 		 in_list_exlude(LastSimbol,S1,LastSimbol1),
@@ -108,22 +108,31 @@ ss_2_razm_:-make_ar(6,Pos),sochet([H1,H2],2,Pos),in_list([97,98,99,100,101,102],
 		 write_str(Word),nl,fail.
 
 put_pos6(Word,[Head1,Head2],[Sim]):-select_pos6(Word,Head1,Sim),select_pos6(Word,Head2,Sim).
-select_pos6(Word,Head,Sim):-(Head is 1->Word=[Sim,_,_,_,_,_],!);				 (Head is 2->Word=[_,Sim,_,_,_,_],!);						 (Head is 3->Word=[_,_,Sim,_,_,_],!);						 (Head is 4->Word=[_,_,_,Sim,_,_],!);						 (Head is 5->Word=[_,_,_,_,Sim,_],!);						 (Head is 6->Word=[_,_,_,_,_,Sim]).
+select_pos6(Word,Head,Sim):-(Head is 1->Word=[Sim,_,_,_,_,_],!);
+				 (Head is 2->Word=[_,Sim,_,_,_,_],!);
+				 (Head is 3->Word=[_,_,Sim,_,_,_],!);
+				 (Head is 4->Word=[_,_,_,Sim,_,_],!);
+				 (Head is 5->Word=[_,_,_,_,Sim,_],!);
+				 (Head is 6->Word=[_,_,_,_,_,Sim]).
 
-in_free_pos6([H1,H2,H3,H4,H5,H6],Sim):-(var(H1)->H1 is Sim),!;					  (var(H2)->H2 is Sim),!;					                    (var(H3)->H3 is Sim),!;
-                  (var(H4)->H4 is Sim),!;							  (var(H5)->H5 is Sim),!;							  (var(H6)->H6 is Sim).
+in_free_pos6([H1,H2,H3,H4,H5,H6],Sim):-(var(H1)->H1 is Sim),!;
+				  (var(H2)->H2 is Sim),!;
+				  (var(H3)->H3 is Sim),!;
+                  (var(H4)->H4 is Sim),!;
+				  (var(H5)->H5 is Sim),!;
+				  (var(H6)->H6 is Sim).
 
 %6
-srazm:-tell('c:/Users/Âèêòîðèÿ/Documents/GitHub/Prolog1/Lab_9/Out.txt'),not(srazm_),told.
-srazm_:-make_ar(7,Pos),sochet([H1,H2],2,Pos),in_list([97,98,99,100,101,102],Simbol1), %âûáðàëè 2 ïîçèöèè â ñëîâå è ñèìâîë íà ýòó ïîçèöèþ
-put_pos7(Word,[H1,H2],[Simbol1]), %put pos  ñòàâèò íà âûáðàííûå ïîçèöèè ñèìâîë,
-in_list_exlude([97,98,99,100,101,102],Simbol1,NList),in_list_exlude(Pos,H1,NPos),in_list_exlude(NPos,H2,NNPos),% óáðàëè ñèâîë èç ñïèñêà ñèìâîëîâ è èç ñïèñêà ìåñò óáðàëè 2 ïîçèöèè èç ïðåäûäóùåãî øàãà
-sochet(Pos_,3,NNPos),in_list(NList,Simbol2),put_pos73(Word,Pos_,[Simbol2]),% âûáðàëè 2 ìåñòà ïîä âòîðîé ñèìâîëá âûáðàëè âòîðîé ñèìâîë è ïîñòàâèëè åãî íà ýòè 2 ìåñòà
-		 in_list_exlude(NList,Simbol2,LastSimbol),%óáðàëè âòîðîé ñèâîë èç ñïèñêà
-		 in_list_exlude(LastSimbol,S1,LastSimbol1),%âûáðàëè è óáðàëè òðåòèé ñèìâîë
-		 in_free_pos7(Word,S1),% ïîñòàâèëè òðåòèé ñèìâîë
-		 in_list_exlude(LastSimbol1,S2,NList1),%âûáðàëè è óáðàëè ÷åòâåðòûé ñèìâîë
-		 in_free_pos7(Word,S2),% ïîñòàâèëè ÷åòâåðòûé ñèìâîë
+srazm:-tell('c:/Users/Ð’Ð¸ÐºÑ‚Ð¾Ñ€Ð¸Ñ/Documents/GitHub/Prolog1/Lab_9/Out.txt'),not(srazm_),told.
+srazm_:-make_ar(7,Pos),sochet([H1,H2],2,Pos),in_list([97,98,99,100,101,102],Simbol1), %Ð²Ñ‹Ð±Ñ€Ð°Ð»Ð¸ 2 Ð¿Ð¾Ð·Ð¸Ñ†Ð¸Ð¸ Ð² ÑÐ»Ð¾Ð²Ðµ Ð¸ ÑÐ¸Ð¼Ð²Ð¾Ð» Ð½Ð° ÑÑ‚Ñƒ Ð¿Ð¾Ð·Ð¸Ñ†Ð¸ÑŽ
+put_pos7(Word,[H1,H2],[Simbol1]), %put pos  ÑÑ‚Ð°Ð²Ð¸Ñ‚ Ð½Ð° Ð²Ñ‹Ð±Ñ€Ð°Ð½Ð½Ñ‹Ðµ Ð¿Ð¾Ð·Ð¸Ñ†Ð¸Ð¸ ÑÐ¸Ð¼Ð²Ð¾Ð»,
+in_list_exlude([97,98,99,100,101,102],Simbol1,NList),in_list_exlude(Pos,H1,NPos),in_list_exlude(NPos,H2,NNPos),% ÑƒÐ±Ñ€Ð°Ð»Ð¸ ÑÐ¸Ð²Ð¾Ð» Ð¸Ð· ÑÐ¿Ð¸ÑÐºÐ° ÑÐ¸Ð¼Ð²Ð¾Ð»Ð¾Ð² Ð¸ Ð¸Ð· ÑÐ¿Ð¸ÑÐºÐ° Ð¼ÐµÑÑ‚ ÑƒÐ±Ñ€Ð°Ð»Ð¸ 2 Ð¿Ð¾Ð·Ð¸Ñ†Ð¸Ð¸ Ð¸Ð· Ð¿Ñ€ÐµÐ´Ñ‹Ð´ÑƒÑ‰ÐµÐ³Ð¾ ÑˆÐ°Ð³Ð°
+sochet(Pos_,3,NNPos),in_list(NList,Simbol2),put_pos73(Word,Pos_,[Simbol2]),% Ð²Ñ‹Ð±Ñ€Ð°Ð»Ð¸ 2 Ð¼ÐµÑÑ‚Ð° Ð¿Ð¾Ð´ Ð²Ñ‚Ð¾Ñ€Ð¾Ð¹ ÑÐ¸Ð¼Ð²Ð¾Ð»Ð± Ð²Ñ‹Ð±Ñ€Ð°Ð»Ð¸ Ð²Ñ‚Ð¾Ñ€Ð¾Ð¹ ÑÐ¸Ð¼Ð²Ð¾Ð» Ð¸ Ð¿Ð¾ÑÑ‚Ð°Ð²Ð¸Ð»Ð¸ ÐµÐ³Ð¾ Ð½Ð° ÑÑ‚Ð¸ 2 Ð¼ÐµÑÑ‚Ð°
+		 in_list_exlude(NList,Simbol2,LastSimbol),%ÑƒÐ±Ñ€Ð°Ð»Ð¸ Ð²Ñ‚Ð¾Ñ€Ð¾Ð¹ ÑÐ¸Ð²Ð¾Ð» Ð¸Ð· ÑÐ¿Ð¸ÑÐºÐ°
+		 in_list_exlude(LastSimbol,S1,LastSimbol1),%Ð²Ñ‹Ð±Ñ€Ð°Ð»Ð¸ Ð¸ ÑƒÐ±Ñ€Ð°Ð»Ð¸ Ñ‚Ñ€ÐµÑ‚Ð¸Ð¹ ÑÐ¸Ð¼Ð²Ð¾Ð»
+		 in_free_pos7(Word,S1),% Ð¿Ð¾ÑÑ‚Ð°Ð²Ð¸Ð»Ð¸ Ñ‚Ñ€ÐµÑ‚Ð¸Ð¹ ÑÐ¸Ð¼Ð²Ð¾Ð»
+		 in_list_exlude(LastSimbol1,S2,NList1),%Ð²Ñ‹Ð±Ñ€Ð°Ð»Ð¸ Ð¸ ÑƒÐ±Ñ€Ð°Ð»Ð¸ Ñ‡ÐµÑ‚Ð²ÐµÑ€Ñ‚Ñ‹Ð¹ ÑÐ¸Ð¼Ð²Ð¾Ð»
+		 in_free_pos7(Word,S2),% Ð¿Ð¾ÑÑ‚Ð°Ð²Ð¸Ð»Ð¸ Ñ‡ÐµÑ‚Ð²ÐµÑ€Ñ‚Ñ‹Ð¹ ÑÐ¸Ð¼Ð²Ð¾Ð»
 		 write_str(Word),nl,fail.
 
 put_pos7(Word,[Head1,Head2],[Sim]):-select_pos7(Word,Head1,Sim),select_pos7(Word,Head2,Sim).
@@ -153,21 +162,21 @@ in_free_pos7([H1,H2,H3,H4,H5,H6,H7],Sim):-(var(H1)->H1 is Sim),!;
 				  (var(H7)->H7 is Sim).
 
 %7
-sssrazm:-tell('c:/Users/Âèêòîðèÿ/Documents/GitHub/Prolog1/Lab_9/Out.txt'),not(sssrazm_),told.
-sssrazm_:-make_ar(9,Pos),sochet([H1,H2],2,Pos),in_list([97,98,99,100,101,102],Simbol1), %âûáðàëè 2 ïîçèöèè â ñëîâå è ñèìâîë íà ýòó ïîçèöèþ
-put_pos9(Word,[H1,H2],[Simbol1]), %put pos  ñòàâèò íà âûáðàííûå ïîçèöèè ñèìâîë,
+sssrazm:-tell('c:/Users/Ð’Ð¸ÐºÑ‚Ð¾Ñ€Ð¸Ñ/Documents/GitHub/Prolog1/Lab_9/Out.txt'),not(sssrazm_),told.
+sssrazm_:-make_ar(9,Pos),sochet([H1,H2],2,Pos),in_list([97,98,99,100,101,102],Simbol1), %Ð²Ñ‹Ð±Ñ€Ð°Ð»Ð¸ 2 Ð¿Ð¾Ð·Ð¸Ñ†Ð¸Ð¸ Ð² ÑÐ»Ð¾Ð²Ðµ Ð¸ ÑÐ¸Ð¼Ð²Ð¾Ð» Ð½Ð° ÑÑ‚Ñƒ Ð¿Ð¾Ð·Ð¸Ñ†Ð¸ÑŽ
+put_pos9(Word,[H1,H2],[Simbol1]), %put pos  ÑÑ‚Ð°Ð²Ð¸Ñ‚ Ð½Ð° Ð²Ñ‹Ð±Ñ€Ð°Ð½Ð½Ñ‹Ðµ Ð¿Ð¾Ð·Ð¸Ñ†Ð¸Ð¸ ÑÐ¸Ð¼Ð²Ð¾Ð»,
 
-in_list_exlude([97,98,99,100,101,102],Simbol1,NList),in_list_exlude(Pos,H1,NPos),in_list_exlude(NPos,H2,NNPos),% óáðàëè ñèâîë èç ñïèñêà ñèìâîëîâ è èç ñïèñêà ìåñò óáðàëè 2 ïîçèöèè èç ïðåäûäóùåãî øàãà
+in_list_exlude([97,98,99,100,101,102],Simbol1,NList),in_list_exlude(Pos,H1,NPos),in_list_exlude(NPos,H2,NNPos),% ÑƒÐ±Ñ€Ð°Ð»Ð¸ ÑÐ¸Ð²Ð¾Ð» Ð¸Ð· ÑÐ¿Ð¸ÑÐºÐ° ÑÐ¸Ð¼Ð²Ð¾Ð»Ð¾Ð² Ð¸ Ð¸Ð· ÑÐ¿Ð¸ÑÐºÐ° Ð¼ÐµÑÑ‚ ÑƒÐ±Ñ€Ð°Ð»Ð¸ 2 Ð¿Ð¾Ð·Ð¸Ñ†Ð¸Ð¸ Ð¸Ð· Ð¿Ñ€ÐµÐ´Ñ‹Ð´ÑƒÑ‰ÐµÐ³Ð¾ ÑˆÐ°Ð³Ð°
 
-sochet([H3, H4],2,NNPos),in_list(NList,Simbol2),put_pos9(Word,[H3,H4],[Simbol2]),% âûáðàëè 2 ìåñòà ïîä âòîðîé ñèìâîë âûáðàëè âòîðîé ñèìâîë è ïîñòàâèëè åãî íà ýòè 2 ìåñòà
+sochet([H3, H4],2,NNPos),in_list(NList,Simbol2),put_pos9(Word,[H3,H4],[Simbol2]),% Ð²Ñ‹Ð±Ñ€Ð°Ð»Ð¸ 2 Ð¼ÐµÑÑ‚Ð° Ð¿Ð¾Ð´ Ð²Ñ‚Ð¾Ñ€Ð¾Ð¹ ÑÐ¸Ð¼Ð²Ð¾Ð» Ð²Ñ‹Ð±Ñ€Ð°Ð»Ð¸ Ð²Ñ‚Ð¾Ñ€Ð¾Ð¹ ÑÐ¸Ð¼Ð²Ð¾Ð» Ð¸ Ð¿Ð¾ÑÑ‚Ð°Ð²Ð¸Ð»Ð¸ ÐµÐ³Ð¾ Ð½Ð° ÑÑ‚Ð¸ 2 Ð¼ÐµÑÑ‚Ð°
 
-in_list_exlude(NList,Simbol2,NList_),in_list_exlude(NNPos,H3,EPos),in_list_exlude(EPos,H4,Pos_),% óáðàëè âòîðîé ñèìâîë è ìåñòà èç ïîä íåãî
+in_list_exlude(NList,Simbol2,NList_),in_list_exlude(NNPos,H3,EPos),in_list_exlude(EPos,H4,Pos_),% ÑƒÐ±Ñ€Ð°Ð»Ð¸ Ð²Ñ‚Ð¾Ñ€Ð¾Ð¹ ÑÐ¸Ð¼Ð²Ð¾Ð» Ð¸ Ð¼ÐµÑÑ‚Ð° Ð¸Ð· Ð¿Ð¾Ð´ Ð½ÐµÐ³Ð¾
 
-sochet(Pos1_,3,Pos_),in_list_exlude(NList_,Simbol3, LastSimbol),put_pos93(Word,Pos1_,[Simbol3]),%âûáðàëè 3 ìåñòà ïîä òðåòèé ñèìâîë è ïîñòàâèëè åãî
-		 in_list_exlude(LastSimbol,S1,LastSimbol1),%âûáðàëè è óáðàëè 4 òðåòèé ñèìâîë
-		 in_free_pos9(Word,S1),% ïîñòàâèëè 4 ñèìâîë
-		 in_list_exlude(LastSimbol1,S2,NList1),%âûáðàëè è óáðàëè 5 ñèìâîë
-		 in_free_pos9(Word,S2),% ïîñòàâèëè 5 ñèìâîë
+sochet(Pos1_,3,Pos_),in_list_exlude(NList_,Simbol3, LastSimbol),put_pos93(Word,Pos1_,[Simbol3]),%Ð²Ñ‹Ð±Ñ€Ð°Ð»Ð¸ 3 Ð¼ÐµÑÑ‚Ð° Ð¿Ð¾Ð´ Ñ‚Ñ€ÐµÑ‚Ð¸Ð¹ ÑÐ¸Ð¼Ð²Ð¾Ð» Ð¸ Ð¿Ð¾ÑÑ‚Ð°Ð²Ð¸Ð»Ð¸ ÐµÐ³Ð¾
+		 in_list_exlude(LastSimbol,S1,LastSimbol1),%Ð²Ñ‹Ð±Ñ€Ð°Ð»Ð¸ Ð¸ ÑƒÐ±Ñ€Ð°Ð»Ð¸ 4 Ñ‚Ñ€ÐµÑ‚Ð¸Ð¹ ÑÐ¸Ð¼Ð²Ð¾Ð»
+		 in_free_pos9(Word,S1),% Ð¿Ð¾ÑÑ‚Ð°Ð²Ð¸Ð»Ð¸ 4 ÑÐ¸Ð¼Ð²Ð¾Ð»
+		 in_list_exlude(LastSimbol1,S2,NList1),%Ð²Ñ‹Ð±Ñ€Ð°Ð»Ð¸ Ð¸ ÑƒÐ±Ñ€Ð°Ð»Ð¸ 5 ÑÐ¸Ð¼Ð²Ð¾Ð»
+		 in_free_pos9(Word,S2),% Ð¿Ð¾ÑÑ‚Ð°Ð²Ð¸Ð»Ð¸ 5 ÑÐ¸Ð¼Ð²Ð¾Ð»
 		 write_str(Word),nl,fail.
 
 put_pos9(Word,[Head1,Head2],[Sim]):-select_pos9(Word,Head1,Sim),select_pos9(Word,Head2,Sim).
@@ -201,3 +210,23 @@ in_free_pos9([H1,H2,H3,H4,H5,H6,H7,H8,H9],Sim):-(var(H1)->H1 is Sim),!;
 				  (var(H7)->H7 is Sim),!;
 				  (var(H8)->H8 is Sim),!;
 				  (var(H9)->H9 is Sim).
+
+%8
+pr8:-tell('c:/Users/Ð’Ð¸ÐºÑ‚Ð¾Ñ€Ð¸Ñ/Documents/GitHub/Prolog1/Lab_9/Out.txt'),write_str([[97],[97],[97],[97]]),nl,not(pr8_),told.
+
+pr8_:- make_ar(4,Pos),in_list(Pos,Index),in_list([98,99,100,101,102],Simbol1),put_pos4(Word,[Index],[Simbol1]), in_list_exlude([98,99,100,101,102],Simbol1,List), %ÑƒÐ±Ñ€Ð°Ð»Ð¸ ÑÐ¸Ð¼Ð²Ð¾Ð» b-f
+		 in_free_pos4(Word,[97]),% Ð¿Ð¾ÑÑ‚Ð°Ð²Ð¸Ð»Ð¸ 1a
+		 in_free_pos4(Word,[97]),% Ð¿Ð¾ÑÑ‚Ð°Ð²Ð¸Ð»Ð¸ 2a
+		 in_free_pos4(Word,[97]),% Ð¿Ð¾ÑÑ‚Ð°Ð²Ð¸Ð»Ð¸ 3a
+		 write_str(Word),nl,fail.
+
+put_pos4(Word,[Head1],[Sim]):-select_pos4(Word,Head1,Sim).
+select_pos4(Word,Head,Sim):-(Head is 1->Word=[Sim,_,_,_],!);
+				 (Head is 2->Word=[_,Sim,_,_],!);
+				 (Head is 3->Word=[_,_,Sim,_],!);
+				 (Head is 4->Word=[_,_,_,Sim],!).
+
+in_free_pos4([H1,H2,H3,H4],Sim):-(var(H1)->H1 is Sim),!;
+				  (var(H2)->H2 is Sim),!;
+				  (var(H3)->H3 is Sim),!;
+                  (var(H4)->H4 is Sim).
