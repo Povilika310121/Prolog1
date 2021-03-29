@@ -13,16 +13,6 @@ read_list_str(Cur_list,List,0):-
 	read_str(A,N,Flag),append(Cur_list,[A],C_l),read_list_str(C_l,List,Flag).
 
 %1.1
-build_all_perm:-
-		read_str(A,_),b_a_p(A,[]).
-
-in_list_exlude([El|T],El,T).
-in_list_exlude([H|T],El,[H|Tail]):-in_list_exlude(T,El,Tail).
-
-b_a_p([],Perm1):-write_str(Perm1),nl,!,fail.
-b_a_p(A,Perm):-in_list_exlude(A,El,A1),b_a_p(A1,[El|Perm]).
-
-%1.2
 build_all_razm_p:-
 		read_str(A,_),read(K),b_a_rp(A,K,[]).
 
