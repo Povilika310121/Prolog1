@@ -259,9 +259,10 @@ pr10_3111_:-make_ar(7,Pos),sochet(Pos_,3,Pos),in_list_exlude([97,98,99,100,101,1
 		 write_str(Word),nl,fail.
 %Слова вида aabbcde
 pr10_2211_:-make_ar(7,Pos),sochet([H1, H2],2,Pos),in_list_exlude(Pos,H1,Pos1),in_list_exlude(Pos1,H2,Pos2),sochet([H3, H4],2,Pos2),sochet([S1, S2],2,[97,98,99,100,101,102]), in_list_exlude([97,98,99,100,101,102],S1,Symbol1), in_list_exlude(Symbol1,S2,Symbol2),put_pos7(Word,[H1, H2],S1),put_pos7(Word,[H3, H4],S2),
-		 in_list_exlude(Symbol2,S1,Sym),
-		 in_free_pos7(Word,S1),
-		 in_list_exlude(Sym,S2,Sym2),
+         in_list_exlude(Symbol2,S1_,Sym),
+		 in_free_pos7(Word,S1_),
+		 in_list_exlude(Sym,S2_,Sym2),
+		 in_free_pos7(Word,S2_),
+		 in_list_exlude(Sym2,S3_,Sym3),
+		 in_free_pos7(Word,S3_),
 		 write_str(Word),nl,fail.
-
-
