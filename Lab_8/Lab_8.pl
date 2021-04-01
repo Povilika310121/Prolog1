@@ -134,14 +134,27 @@ kol([_|T],Kolvo,K):-Kolvo1 is Kolvo+1,kol(T, Kolvo1, K).
 pr5:-see('c:/Users/Виктория/Documents/GitHub/Prolog1/Lab_8/labb.txt'),read_list_str(List,N),seen,sort1(List, N,[]).
 sort1([],[],A):-write_list_str(A),!.
 
-sort1([H|T],[HL|TL],A):-Max =HL, Max_str=H, sort_([H|T],[HL|TL], Max, Max_str, Stroka, Nom),append(A,[Stroka],B),remove_str([H|T], Stroka, List),remove_str([HL|TL], Nom, ListL), sort1(List, ListL,B).
+sort1([H|T],[HL|TL],A):-Max =HL, Max_str=H, sort_([H|T],[HL|TL], Max, Max_str, Stroka, Nom),append(A,[Stroka],B),remove_str([H|T], Stroka, List),remove_str([HL|TL], Nom, ListL), sort1(List, ListL,B),!.
 
 sort_([],[], Max, Max_str,Max_str, Max):-!.
-sort_([H|T], [HL|TL], Max, Max_str, St,Nm):- (HL>=Max-> Max1 = HL, Max_str1 = H,sort_(T, TL, Max1, Max_str1, St,Nm); sort_(T, TL, Max, Max_str,St,Nm)).
+sort_([H|T], [HL|TL], Max, Max_str, St,Nm):- (HL>Max-> Max1 = HL, Max_str1 = H,sort_(T, TL, Max1, Max_str1, St,Nm); sort_(T, TL, Max, Max_str,St,Nm)).
 
-remove_str([H|T], X, List):-remove_str([H|T],[],List,X).
-remove_str([],List,List,_):-!.
-remove_str([H|T], Temp, List, X):-(H=X->remove_str(T, Temp,List,X);append1(Temp,[H], Temp1), remove_str(T, Temp1, List, X)).
+remove_str([H|T], X, List):-remove_str([H|T],[],List,X, 1).
+remove_str([],List,List,_,_):-!.
+remove_str([H|T], Temp, List, X, 1):-(H=X-> remove_str(T, Temp,List,X, 0)),!.
+remove_str([H|T], Temp, List, X, 1):-append1(Temp,[H], Temp1), remove_str(T, Temp1, List, X,1).
+remove_str([H|T], Temp, List, X, 0):-append1(Temp,[H], Temp1), remove_str(T, Temp1, List, X,1).
 
 
+%__6__
+pr6:-see('c:/Users/Виктория/Documents/GitHub/Prolog1/Lab_8/labb.txt'),read_list_str(List,_),seen,kol_slov_str(List, L),sort1(List, L,[]).
+
+kol_slov_str(A,L):-kol_slov_str(A,[],L),!.
+kol_slov_str([],L, L):-!.
+kol_slov_str([H|T], L_, L):-list_wordskol(H,LW,0,Kolvo),append1(L_,[Kolvo],L1),kol_slov_str(T,L1,L).
+
+list_wordskol(A,LW,_,K):-append1([32],A,A1),reverse(A1,AR),list_wordskol(AR,[],LW,[],K,0).
+list_wordskol([],LW,LW,_,K,K):-!.
+list_wordskol([H|T],LW,LWN,W,Kolvo,K):-((H=32; H=10) -> append([W],LW,LW1), K1 is K+1,list_wordskol(T,LW1,LWN,[],Kolvo, K1);
+append1([H],W,W1),list_wordskol(T,LW,LWN,W1,Kolvo,K)).
 
