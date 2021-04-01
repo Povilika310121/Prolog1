@@ -130,8 +130,18 @@ kol([],K,K):-!.
 kol([],_,_):-!.
 kol([_|T],Kolvo,K):-Kolvo1 is Kolvo+1,kol(T, Kolvo1, K).
 
+%__5__
+pr5:-see('c:/Users/Виктория/Documents/GitHub/Prolog1/Lab_8/labb.txt'),read_list_str(List,N),seen,sort1(List, N,[]).
+sort1([],[],A):-write_list_str(A),!.
 
+sort1([H|T],[HL|TL],A):-Max =HL, Max_str=H, sort_([H|T],[HL|TL], Max, Max_str, Stroka, Nom),append(A,[Stroka],B),remove_str([H|T], Stroka, List),remove_str([HL|TL], Nom, ListL), sort1(List, ListL,B).
 
+sort_([],[], Max, Max_str,Max_str, Max):-!.
+sort_([H|T], [HL|TL], Max, Max_str, St,Nm):- (HL>=Max-> Max1 = HL, Max_str1 = H,sort_(T, TL, Max1, Max_str1, St,Nm); sort_(T, TL, Max, Max_str,St,Nm)).
+
+remove_str([H|T], X, List):-remove_str([H|T],[],List,X).
+remove_str([],List,List,_):-!.
+remove_str([H|T], Temp, List, X):-(H=X->remove_str(T, Temp,List,X);append1(Temp,[H], Temp1), remove_str(T, Temp1, List, X)).
 
 
 
