@@ -61,6 +61,7 @@ append1([H],W,W1),list_words(T,LW,LWN,W1)).
 list_words_all_file([],ListAllWord,ListAllWord):-!.
 list_words_all_file(Stroka,List,ListAllWord):-list_words(Stroka,LW),append1(List,LW,ListAllWord).
 
+
 kol_repeat_in_list([H|T],X,K):-kol_repeat_in_list([H|T],X,0,K).
 kol_repeat_in_list([],_,Kol,Kol):-!.
 kol_repeat_in_list([H|T],X,K,Kol):-(H=X -> K1 is K+1,kol_repeat_in_list(T,X,K1,Kol);kol_repeat_in_list(T,X,K,Kol)).
@@ -68,7 +69,7 @@ kol_repeat_in_list([H|T],X,K,Kol):-(H=X -> K1 is K+1,kol_repeat_in_list(T,X,K1,K
 often_word_in_list([],Word,Word,Kol,Kol):-!.
 often_word_in_list([H|T],W,Word,K,Kol):-kol_repeat_in_list([H|T],H,K1),(K1>K -> Kol1 = K1,W1=H,often_word_in_list(T,W1,Word,K1,Kol1);often_word_in_list(T,W,Word,K,Kol)).
 %__1_5__
-pr8_5:-see('c:/Users/Виктория/Documents/GitHub/Prolog1/Lab_8/labb.txt'),read_str(A,_,1),seen,tell('c:/Users/Виктория/Documents/GitHub/Prolog1/Lab_8/Out.txt'),list_words_all_file(A,[],ListWordAllFile), proverka_(ListWordAllFile,ListWordAllFile),told.
+no_repeat_str:-see('c:/Users/Виктория/Documents/GitHub/Prolog1/Lab_8/labb.txt'),read_str(A,_,1),seen,tell('c:/Users/Виктория/Documents/GitHub/Prolog1/Lab_8/Out.txt'),list_words_all_file(A,[],ListWordAllFile),  proverka_(ListWordAllFile,ListWordAllFile),told.
 
 proverka_(_,[]):-!.
 proverka_(ListWordAllFile,[H|T]):- list_words(H,ListWordInStr),
