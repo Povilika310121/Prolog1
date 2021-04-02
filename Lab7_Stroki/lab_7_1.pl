@@ -153,10 +153,19 @@ space([H|T],_,Buffer,NL):-append1(Buffer,[H],BufferN),space(T,0,BufferN,NL),!.
 space([32|T],NSt):-space(T,NSt),!.
 space(Nst,Nst):-!.
 
-%Задание 22
-p22:-read_str(St,Length),print_sr(St),print_sr(St,Length).
-print_sr([H|T]):-write("First = "),put(H),nl,reverse([H|T],[HR|_]),write("End = "),put(HR),nl.
+%Задание 21
+
+pr21:-read_str([H|T],_),read_str(St2,_),(in_list(St2,H) -> splitting(T,St2,[],[],LW);splitting([H|T],St2,[],[],LW)),write_list_str(LW).
+splitting([],_,[],LW,LW):-!.
+splitting([],_,LastWord,LW,ListWord):-append1(LW,[LastWord],ListWord),!.
+splitting([H|T],List2,TempWord,LW,ListWord):-not(in_list(List2,H)),append1(TempWord,[H],TempWordN),splitting(T,List2,TempWordN,LW,ListWord),!.
+splitting([H1|T],List2,TempWord,LW,ListWord):-append1(LW,[TempWord],NLW),splitting(T,List2,[],NLW,ListWord).
+
+
+%Задание 21.2
+p22:-read_str(St,Length),print_sr(St),print_sr(St,Length),!.
+print_sr([H|T]):-write("First = "),put(H),nl,reverse([H|T],[HR|_]),write("End = "),put(HR),nl,!.
 print_sr(List,Length):-not(0 is Length mod 2),L is Length div 2+1,index(List,El,L,0),write("Middle = "),put(El),!.
 
 index([H|T],El,Num):-index([H|T],El,Num,0).
-index([H|T],El,Num,Chet):-Chet1 is Chet+1,(H = El,Num = Chet1 -> !;index(T,El,Num,Chet1)).
+index([H|T],El,Num,K):-K1 is K+1,(H = El,Num = K1 -> !;index(T,El,Num,K1)).
